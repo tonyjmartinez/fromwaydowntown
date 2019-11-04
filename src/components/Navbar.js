@@ -49,14 +49,17 @@ const Navbar = props => {
 
   const identity = useIdentityContext();
   const [dialog, setDialog] = React.useState(false);
+
+  console.log("Identity", identity);
   const name =
     (identity &&
       identity.user &&
       identity.user.user_metadata &&
-      identity.user.user_metadata.name) ||
+      identity.user.user_metadata.full_name) ||
     "NoName";
 
-  console.log(JSON.stringify(identity));
+  // console.log(JSON.stringify(identity));
+
   const isLoggedIn = identity && identity.isLoggedIn;
   return (
     <nav
