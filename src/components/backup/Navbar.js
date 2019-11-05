@@ -100,6 +100,7 @@ const Navbar = props => {
             <Link className="navbar-item" to="/contact/examples">
               Form Exampleeees
             </Link>
+            <Link to="/app/">App</Link>
             <button className="btn" onClick={() => setDialog(true)}>
               {isLoggedIn ? `Hello ${name}, Log out here!` : "LOG IN"}
             </button>

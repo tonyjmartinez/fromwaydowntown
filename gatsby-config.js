@@ -12,8 +12,13 @@ module.exports = {
         url: `https://dreamy-lichterman-3b5b48.netlify.com/` // required!
       }
     },
+    {
+      resolve: `gatsby-plugin-create-client-paths`,
+      options: { prefixes: [`/app/*`] }
+    },
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sass",
+    "gatsby-plugin-typescript",
     {
       // keep as first gatsby-source-filesystem plugin for gatsby image support
       resolve: "gatsby-source-filesystem",
