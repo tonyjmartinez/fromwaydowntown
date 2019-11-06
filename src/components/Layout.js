@@ -5,9 +5,13 @@ import Navbar from "../components/Navbar";
 import "./all.sass";
 import useSiteMetadata from "./SiteMetadata";
 import { withPrefix } from "gatsby";
+import Toggle from "./Toggle";
+import useDarkMode from "../hooks/useDarkMode";
 
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata();
+  const [darkMode, setDarkMode] = useDarkMode();
+  console.log(darkMode);
   return (
     <div>
       <Helmet>
@@ -49,6 +53,7 @@ const TemplateWrapper = ({ children }) => {
         />
       </Helmet>
       <Navbar title="from way downtown" />
+      <Toggle enabled={darkMode} setEnabled={setDarkMode} />
       <div>{children}</div>
     </div>
   );
