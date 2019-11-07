@@ -1,13 +1,14 @@
-import React from "react"
-import { Link, navigate } from "gatsby"
+import React from "react";
+import { Link, navigate } from "gatsby";
+import Login from "../app/login";
 
-import { useIdentityContext } from "react-netlify-identity-widget"
+import { useIdentityContext } from "react-netlify-identity-widget";
 
-export default () => {
-  const { user, isLoggedIn, logoutUser } = useIdentityContext()
+const NavBar = () => {
+  const { user, isLoggedIn, logoutUser } = useIdentityContext();
   let message = isLoggedIn
     ? `Hello, ${user.user_metadata && user.user_metadata.full_name}`
-    : "You are not logged in"
+    : "You are not logged in";
 
   return (
     <div
@@ -16,7 +17,7 @@ export default () => {
         flex: "1",
         justifyContent: "space-between",
         borderBottom: "1px solid #d1c1e0",
-        backgroundColor: "aliceblue",
+        backgroundColor: "aliceblue"
       }}
     >
       <span>{message}</span>
@@ -31,9 +32,9 @@ export default () => {
           <a
             href="/"
             onClick={async event => {
-              event.preventDefault()
-              await logoutUser()
-              navigate(`/app/login`)
+              event.preventDefault();
+              await logoutUser();
+              navigate(`/app/login`);
             }}
           >
             Logout
@@ -43,5 +44,7 @@ export default () => {
         )}
       </nav>
     </div>
-  )
-}
+  );
+};
+
+export default NavBar;
