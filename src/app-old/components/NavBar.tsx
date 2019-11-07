@@ -1,7 +1,5 @@
 import React from "react";
 import { Link, navigate } from "gatsby";
-import Login from "../app/login";
-
 import { useIdentityContext } from "react-netlify-identity-widget";
 
 const NavBar = () => {
