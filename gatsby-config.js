@@ -77,6 +77,14 @@ module.exports = {
         modulePath: `${__dirname}/src/cms/cms.js`
       }
     },
+    "gatsby-plugin-styled-components",
+    {
+      resolve: `gatsby-styled-components-dark-mode`,
+      options: {
+        light: require(`${__dirname}/src/style/theme.js`).lightTheme,
+        dark: require(`${__dirname}/src/style/theme.js`).darkTheme
+      }
+    },
     {
       resolve: "gatsby-plugin-purgecss", // purges all unused/unreferenced css rules
       options: {
@@ -84,6 +92,7 @@ module.exports = {
         purgeOnly: ["/all.sass"] // applies purging only on the bulma css file
       }
     }, // must be after other CSS plugins
-    "gatsby-plugin-netlify" // make sure to keep it last in the array
+
+    "gatsby-plugin-netlify" // make sure to keep it last in the array,
   ]
 };

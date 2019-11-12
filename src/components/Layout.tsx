@@ -1,17 +1,29 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import { Helmet } from "react-helmet";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
+import Footer from "./Footer";
+import Navbar from "./Navbar";
 import "./all.sass";
 import useSiteMetadata from "./SiteMetadata";
 import { withPrefix } from "gatsby";
 import Toggle from "./Toggle";
 import useDarkMode from "../hooks/useDarkMode";
+import { ThemeManagerContext } from "gatsby-styled-components-dark-mode";
+import Button from "./button";
 
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata();
   const [darkMode, setDarkMode] = useDarkMode();
+  const themeContext = useContext(ThemeManagerContext);
+
   console.log(darkMode);
+  console.log(themeContext.isDark);
+
+  useEffect(() => {
+    if (themeContext.isDark !== darkMode) {
+      themeContext.toggleDark();
+    }
+  }, [darkMode]);
+
   return (
     <div>
       <Helmet>
@@ -54,6 +66,7 @@ const TemplateWrapper = ({ children }) => {
       </Helmet>
       <Navbar title="from way downtown" />
       <Toggle enabled={darkMode} setEnabled={setDarkMode} />
+      <Button>Text</Button>
       <div>{children}</div>
     </div>
   );
