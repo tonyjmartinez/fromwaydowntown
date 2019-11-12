@@ -1,7 +1,4 @@
 import React, { ReactChildren, ReactNode } from "react";
-import "react-bulma-components/dist/react-bulma-components.min.css";
-
-import { Button } from "react-bulma-components";
 import styled, { ThemeConsumer } from "styled-components";
 
 interface Props {
@@ -15,7 +12,7 @@ interface StyleProps {
 const BulmaBtn = (props: Props) => {
   const { className, children } = props;
   console.log(props);
-  return <Button className={className}>{children}</Button>;
+  return <button className={`${className} button`}>{children}</button>;
 };
 
 const StyledBtn = styled(BulmaBtn)`
@@ -23,6 +20,6 @@ const StyledBtn = styled(BulmaBtn)`
   color: ${props => props.theme.secondaryColor};
 `;
 
-export default (props: StyleProps) => {
+export default (props: Props) => {
   return <StyledBtn {...props} />;
 };

@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import { Helmet } from "react-helmet";
 import Footer from "./Footer";
-import Navbar from "./Navbar";
+import Navbar from "./navbar";
 import "./all.sass";
 import useSiteMetadata from "./SiteMetadata";
 import { withPrefix } from "gatsby";
