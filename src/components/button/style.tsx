@@ -1,5 +1,7 @@
-import React, { ReactChildren, ReactNode } from "react";
+import React, { ReactChildren, ReactNode, useContext } from "react";
 import styled, { ThemeConsumer } from "styled-components";
+import { ThemeManagerContext } from "gatsby-styled-components-dark-mode";
+import "../all.sass";
 
 interface Props {
   className: string;
@@ -11,8 +13,11 @@ interface StyleProps {
 
 const BulmaBtn = (props: Props) => {
   const { className, children } = props;
-  console.log(props);
-  return <button className={`${className} button`}>{children}</button>;
+  const themeContext = useContext(ThemeManagerContext);
+  console.log(themeContext);
+  const cls = `button ${themeContext.isDark ? "is-black" : "is-primary"}`;
+  console.log(cls);
+  return <button className={cls}>{children}</button>;
 };
 
 const StyledBtn = styled(BulmaBtn)`
@@ -20,6 +25,6 @@ const StyledBtn = styled(BulmaBtn)`
   color: ${props => props.theme.secondaryColor};
 `;
 
-export default (props: Props) => {
+export default (props: StyleProps) => {
   return <StyledBtn {...props} />;
 };
