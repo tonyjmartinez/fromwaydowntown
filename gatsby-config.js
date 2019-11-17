@@ -81,8 +81,8 @@ module.exports = {
     {
       resolve: `gatsby-styled-components-dark-mode`,
       options: {
-        light: require(`${__dirname}/src/style/theme.js`).lightTheme,
-        dark: require(`${__dirname}/src/style/theme.js`).darkTheme
+        light: require(`${__dirname}/src/style/theme.ts`).lightTheme,
+        dark: require(`${__dirname}/src/style/theme.ts`).darkTheme
       }
     },
     {

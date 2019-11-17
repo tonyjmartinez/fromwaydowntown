@@ -11,7 +11,11 @@ const BulmaNavBar = props => {
   const { title, className } = props;
   console.log(props);
   return (
-    <nav className="navbar" role="navigation" aria-label="main navigation">
+    <nav
+      className={`navbar ${className}`}
+      role="navigation"
+      aria-label="main navigation"
+    >
       <div className="navbar-brand">
         <a className="navbar-item" href="https://bulma.io">
           <h1 className="title">{title}</h1>
@@ -64,8 +68,12 @@ const BulmaNavBar = props => {
   );
 };
 
-const StyledNavBar = styled(BulmaNavBar)``;
+const StyledNavBar = styled(BulmaNavBar)`
+  && {
+    background-color: ${props => props.theme.backgroundColor};
+  }
+`;
 
 export default props => {
-  return <BulmaNavBar {...props} />;
+  return <StyledNavBar {...props} />;
 };

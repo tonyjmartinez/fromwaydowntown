@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import { Helmet } from "react-helmet";
 import Footer from "./Footer";
+import styled from "styled-components";
 import Navbar from "./navbar";
 import "./all.sass";
 import useSiteMetadata from "./SiteMetadata";
@@ -17,6 +18,10 @@ const TemplateWrapper = ({ children }) => {
 
   console.log(darkMode);
   console.log(themeContext.isDark);
+  const StyledWrapper = styled.div`
+    background-color: ${props => props.theme.backgroundColor};
+    height: 1000px;
+  `;
 
   useEffect(() => {
     if (themeContext.isDark !== darkMode) {
@@ -25,7 +30,7 @@ const TemplateWrapper = ({ children }) => {
   }, [darkMode]);
 
   return (
-    <div>
+    <StyledWrapper>
       <Helmet>
         <html lang="en" />
         <title>{title}</title>
@@ -68,7 +73,7 @@ const TemplateWrapper = ({ children }) => {
       <Toggle enabled={darkMode} setEnabled={setDarkMode} />
       <Button>Text</Button>
       <div>{children}</div>
-    </div>
+    </StyledWrapper>
   );
 };
 
