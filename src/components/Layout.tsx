@@ -20,7 +20,7 @@ const TemplateWrapper = ({ children }) => {
   console.log(themeContext.isDark);
   const StyledWrapper = styled.div`
     background-color: ${props => props.theme.backgroundColor};
-    height: 1000px;
+    height: 100vh;
   `;
 
   useEffect(() => {

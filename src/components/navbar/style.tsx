@@ -7,6 +7,12 @@ interface Props {
   className: string;
 }
 
+const StyledTitle = styled.h1`
+  && {
+    color: ${props => props.theme.titleColor};
+  }
+`;
+
 const BulmaNavBar = props => {
   const { title, className } = props;
   console.log(props);
@@ -17,8 +23,8 @@ const BulmaNavBar = props => {
       aria-label="main navigation"
     >
       <div className="navbar-brand">
-        <a className="navbar-item" href="https://bulma.io">
-          <h1 className="title">{title}</h1>
+        <a className="navbar-item" href="/">
+          <StyledTitle className="title">{title}</StyledTitle>
         </a>
 
         <a
