@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { Helmet } from "react-helmet";
 import Footer from "./Footer";
 import styled from "styled-components";
@@ -7,16 +7,34 @@ import "./all.sass";
 import useSiteMetadata from "./SiteMetadata";
 import { withPrefix } from "gatsby";
 import Toggle from "./Toggle";
-import useDarkMode from "../hooks/useDarkMode";
 import { ThemeManagerContext } from "gatsby-styled-components-dark-mode";
 import Button from "./button";
+import { setState } from "expect/build/jestMatchersObject";
 
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata();
-  const [darkMode, setDarkMode] = useDarkMode();
+  const [darkMode, setDarkMode] = useState(null);
   const themeContext = useContext(ThemeManagerContext);
 
-  console.log(darkMode);
+  useEffect(() => {
+    console.log("Window theme", window.__theme);
+    if (typeof window !== "undefined") {
+      setDarkMode(window.__theme === "dark" ? true : false);
+      window.__onThemeChange = () =>
+        setDarkMode(window.__theme === "dark" ? true : false);
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log("useEffect", darkMode);
+
+    if (typeof window !== "undefined" && darkMode !== null) {
+      console.log("here");
+      window.__setPreferredTheme(darkMode ? "dark" : "light");
+    }
+  }, [darkMode]);
+
+  console.log("darkMode", darkMode);
   console.log(themeContext.isDark);
   const StyledWrapper = styled.div`
     background-color: ${props => props.theme.backgroundColor};
@@ -24,7 +42,9 @@ const TemplateWrapper = ({ children }) => {
   `;
 
   useEffect(() => {
-    if (themeContext.isDark !== darkMode) {
+    console.log("themectx", themeContext.isDark, darkMode);
+    if (darkMode !== null && themeContext.isDark !== darkMode) {
+      console.log("hereeee");
       themeContext.toggleDark();
     }
   }, [darkMode]);
