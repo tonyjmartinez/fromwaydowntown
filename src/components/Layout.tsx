@@ -18,17 +18,23 @@ const TemplateWrapper = ({ children }) => {
 
   useEffect(() => {
     console.log("Window theme", window.__theme);
-    if (typeof window !== "undefined") {
+    setDarkMode(window.__theme === "dark" ? true : false);
+    window.__onThemeChange = () =>
       setDarkMode(window.__theme === "dark" ? true : false);
-      window.__onThemeChange = () =>
-        setDarkMode(window.__theme === "dark" ? true : false);
-    }
   }, []);
+
+  useEffect(() => {
+    console.log("themectx", themeContext.isDark, darkMode);
+    if (darkMode !== null && themeContext.isDark !== darkMode) {
+      console.log("hereeee");
+      themeContext.toggleDark();
+    }
+  }, [darkMode]);
 
   useEffect(() => {
     console.log("useEffect", darkMode);
 
-    if (typeof window !== "undefined" && darkMode !== null) {
+    if (darkMode !== null) {
       console.log("here");
       window.__setPreferredTheme(darkMode ? "dark" : "light");
     }
@@ -40,14 +46,6 @@ const TemplateWrapper = ({ children }) => {
     background-color: ${props => props.theme.backgroundColor};
     height: 100vh;
   `;
-
-  useEffect(() => {
-    console.log("themectx", themeContext.isDark, darkMode);
-    if (darkMode !== null && themeContext.isDark !== darkMode) {
-      console.log("hereeee");
-      themeContext.toggleDark();
-    }
-  }, [darkMode]);
 
   return (
     <StyledWrapper>
