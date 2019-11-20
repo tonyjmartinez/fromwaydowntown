@@ -17,3 +17,5 @@ const Login = (props: Props) => {
     <IdentityModal showDialog={open} onCloseDialog={() => setOpen(false)} />
   );
 };
+
+export default Login;

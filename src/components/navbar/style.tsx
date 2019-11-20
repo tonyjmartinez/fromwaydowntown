@@ -5,16 +5,18 @@ import styled from "styled-components";
 interface Props {
   title: string;
   className: string;
+  setLoginOpen: () => {};
 }
 
 const StyledTitle = styled.h1`
   && {
     color: ${props => props.theme.titleColor};
+    font-family: "Bungee Shade", cursive;
   }
 `;
 
 const BulmaNavBar = props => {
-  const { title, className } = props;
+  const { title, className, setLoginOpen } = props;
   console.log(props);
   return (
     <nav
@@ -65,7 +67,9 @@ const BulmaNavBar = props => {
               <a className="button is-primary">
                 <strong>Sign up</strong>
               </a>
-              <a className="button is-light">Log in</a>
+              <a onClick={setLoginOpen} className="button is-light">
+                Log in
+              </a>
             </div>
           </div>
         </div>

@@ -9,14 +9,17 @@ import { withPrefix } from "gatsby";
 import Toggle from "./Toggle";
 import { ThemeManagerContext } from "gatsby-styled-components-dark-mode";
 import Button from "./button";
-import { setState } from "expect/build/jestMatchersObject";
+import Login from "../app/login";
 
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata();
   const [darkMode, setDarkMode] = useState(null);
+  const [loginOpen, setLoginOpen] = useState(false);
   const themeContext = useContext(ThemeManagerContext);
 
   useEffect(() => {
+    // Start off in Dark Mode
+    themeContext.toggleDark();
     console.log("Window theme", window.__theme);
     setDarkMode(window.__theme === "dark" ? true : false);
     window.__onThemeChange = () =>
@@ -42,13 +45,15 @@ const TemplateWrapper = ({ children }) => {
 
   console.log("darkMode", darkMode);
   console.log(themeContext.isDark);
+
+  const Wrapper = ({ children }) => <StyledWrapper>{children}</StyledWrapper>;
   const StyledWrapper = styled.div`
     background-color: ${props => props.theme.backgroundColor};
-    height: 100vh;
+    height: 100%;
   `;
 
   return (
-    <StyledWrapper>
+    <Wrapper>
       <Helmet>
         <html lang="en" />
         <title>{title}</title>
@@ -86,12 +91,17 @@ const TemplateWrapper = ({ children }) => {
           property="og:image"
           content={`${withPrefix("/")}img/og-image.jpg`}
         />
+        <style>
+          @import
+          url('https://fonts.googleapis.com/css?family=Bungee+Shade&display=swap');
+        </style>
       </Helmet>
-      <Navbar title="from way downtown" />
+      <Navbar setLoginOpen={setLoginOpen} title="from way downtown" />
       <Toggle enabled={darkMode} setEnabled={setDarkMode} />
       <Button>Text</Button>
+      <Login open={loginOpen} setOpen={setLoginOpen} />
       <div>{children}</div>
-    </StyledWrapper>
+    </Wrapper>
   );
 };
 
