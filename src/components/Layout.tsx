@@ -11,6 +11,12 @@ import { ThemeManagerContext } from "gatsby-styled-components-dark-mode";
 import Button from "./button";
 import Login from "../app/login";
 
+const Wrapper = ({ children }) => <StyledWrapper>{children}</StyledWrapper>;
+const StyledWrapper = styled.div`
+  background-color: ${props => props.theme.backgroundColor};
+  height: 100vh;
+`;
+
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata();
   const [darkMode, setDarkMode] = useState(null);
@@ -45,12 +51,6 @@ const TemplateWrapper = ({ children }) => {
 
   console.log("darkMode", darkMode);
   console.log(themeContext.isDark);
-
-  const Wrapper = ({ children }) => <StyledWrapper>{children}</StyledWrapper>;
-  const StyledWrapper = styled.div`
-    background-color: ${props => props.theme.backgroundColor};
-    height: 100%;
-  `;
 
   return (
     <Wrapper>
