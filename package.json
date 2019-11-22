@@ -42,6 +42,7 @@
     "react-dom": "^16.8.4",
     "react-helmet": "^5.2.0",
     "react-netlify-identity-widget": "^0.2.5",
+    "react-pose": "^4.0.10",
     "styled-components": "^4.4.1",
     "uuid": "^3.2.1"
   },

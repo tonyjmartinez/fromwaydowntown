@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import SportsBasketballIcon from "@material-ui/icons/SportsBasketball";
+import Switch from "../switch";
 import { Link } from "gatsby";
 import styled from "styled-components";
 
@@ -44,10 +44,10 @@ const BulmaNavBar = props => {
       </div>
 
       <div id="navbarBasicExample" className="navbar-menu">
+        <Switch />
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
-              <SportsBasketballIcon color="primary" fontSize="large" />
               <a className="button is-primary">
                 <strong>Sign up</strong>
               </a>
