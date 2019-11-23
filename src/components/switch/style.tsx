@@ -9,8 +9,7 @@ const SwitchBg = styled.div`
   height: 40px;
   border: 3px solid blue;
   position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(15%);
 `;
 
 const ToggleWrapper = styled.div`
@@ -18,18 +17,15 @@ const ToggleWrapper = styled.div`
 `;
 
 const Toggle = posed.div({
-  left: { x: "-10px" },
-  right: { x: "10px" }
+  left: { x: "0px" },
+  right: { x: "40px" }
 });
 
 const Switch = props => {
   const [checked, setChecked] = useState(true);
   return (
-    <SwitchBg>
-      <Toggle
-        onClick={() => setChecked(false)}
-        pose={checked ? "left" : "right"}
-      >
+    <SwitchBg onClick={() => setChecked(!checked)}>
+      <Toggle pose={checked ? "left" : "right"}>
         <SportsBasketballIcon color="primary" fontSize="large" />
       </Toggle>
     </SwitchBg>
