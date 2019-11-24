@@ -96,7 +96,12 @@ const TemplateWrapper = ({ children }) => {
           url('https://fonts.googleapis.com/css?family=Bungee+Shade&display=swap');
         </style>
       </Helmet>
-      <Navbar setLoginOpen={setLoginOpen} title="from way downtown" />
+      <Navbar
+        darkMode={darkMode}
+        setDarkMode={setDarkMode}
+        setLoginOpen={setLoginOpen}
+        title="from way downtown"
+      />
       <Toggle enabled={darkMode} setEnabled={setDarkMode} />
       <Button>Text</Button>
       <Login open={loginOpen} setOpen={setLoginOpen} />

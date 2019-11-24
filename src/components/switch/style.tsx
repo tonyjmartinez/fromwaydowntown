@@ -2,31 +2,58 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import SportsBasketballIcon from "@material-ui/icons/SportsBasketball";
 import posed from "react-pose";
+import { makeStyles } from "@material-ui/core/styles";
+import theme from "../../style/theme";
+const { darkTheme, lightTheme } = theme;
 
 const SwitchBg = styled.div`
   width: 80px;
   border-radius: 2em;
   height: 40px;
-  border: 3px solid blue;
+  border: 3px solid ${props => props.theme.mainColor};
   position: relative;
-  transform: translateY(15%);
-`;
-
-const ToggleWrapper = styled.div`
-  width: 20px;
+  margin: 0px auto;
 `;
 
 const Toggle = posed.div({
-  left: { x: "0px" },
-  right: { x: "40px" }
+  left: { x: "5px" },
+  right: { x: "35px" }
 });
 
-const Switch = props => {
+// const StyledBBall = styled(Basketball)`
+//   color: yellow;
+//   background-color: blue;
+// `;
+interface Props {
+  darkMode: boolean;
+  setDarkMode: () => {};
+}
+
+const Switch = (props: Props) => {
+  console.log("Switch", props);
+  const { darkMode, setDarkMode } = props;
+  const useStyles = makeStyles({
+    root: {
+      color: `${darkMode ? darkTheme.iconColor : lightTheme.iconColor}`
+    }
+  });
   const [checked, setChecked] = useState(true);
+  const classes = useStyles();
+  const Basketball = props => (
+    <SportsBasketballIcon className={classes.root} fontSize="large" />
+  );
+  const StyledBBall = styled(Basketball)``;
+  const BBall = props => <StyledBBall {...props} />;
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    setChecked(!checked);
+  };
+
   return (
-    <SwitchBg onClick={() => setChecked(!checked)}>
-      <Toggle pose={checked ? "left" : "right"}>
-        <SportsBasketballIcon color="primary" fontSize="large" />
+    <SwitchBg style={{ zIndex: 1 }} onClick={() => toggleDarkMode()}>
+      <Toggle style={{ zIndex: 0 }} pose={checked ? "left" : "right"}>
+        <BBall />
       </Toggle>
     </SwitchBg>
   );
