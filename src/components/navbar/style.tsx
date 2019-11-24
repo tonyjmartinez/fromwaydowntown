@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Switch from "../switch";
 import { Link } from "gatsby";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import styled from "styled-components";
 
 interface Props {
@@ -14,7 +15,7 @@ interface Props {
 const StyledTitle = styled.div`
   && {
     color: ${props => props.theme.titleColor};
-    font-family: "Bungee Shade", cursive;
+    font-family: "Permanent Marker", cursive;
     font-size: 1.5em;
     width: 100%;
   }
@@ -33,6 +34,8 @@ const navItemStyle = {
 
 const BulmaNavBar = (props: Props) => {
   const { title, className, darkMode, setDarkMode } = props;
+  const matches = useMediaQuery("(min-width:545px)");
+
   console.log("BulmaNav", props);
   const splitTitle = title.split(" ");
   return (
@@ -40,9 +43,11 @@ const BulmaNavBar = (props: Props) => {
       <div className="navbar-brand">
         <a style={{ width: "70%" }} className="navbar-item" href="/">
           <StyledTitle>
-            {splitTitle.map((word, idx) => {
-              return <TitleDiv key={idx}>{word}</TitleDiv>;
-            })}
+            {matches
+              ? title
+              : splitTitle.map((word, idx) => {
+                  return <TitleDiv key={idx}>{word}</TitleDiv>;
+                })}
           </StyledTitle>
         </a>
         <div style={{ width: "30%" }} className="navbar-item">

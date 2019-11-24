@@ -93,7 +93,7 @@ const TemplateWrapper = ({ children }) => {
         />
         <style>
           @import
-          url('https://fonts.googleapis.com/css?family=Bungee+Shade&display=swap');
+          url('https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap');
         </style>
       </Helmet>
       <Navbar
