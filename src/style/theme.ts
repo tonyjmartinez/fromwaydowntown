@@ -2,7 +2,7 @@ const MasterTheme = {
   buttonColor: "shadyLady"
 };
 
-export default {
+module.exports = {
   darkTheme: {
     ...MasterTheme,
     mainColor: "#00D1B2",

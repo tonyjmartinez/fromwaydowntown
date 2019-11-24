@@ -16,14 +16,10 @@ const SwitchBg = styled.div`
 `;
 
 const Toggle = posed.div({
-  left: { x: "5px" },
-  right: { x: "35px" }
+  left: { x: "3px" },
+  right: { x: "37px" }
 });
 
-// const StyledBBall = styled(Basketball)`
-//   color: yellow;
-//   background-color: blue;
-// `;
 interface Props {
   darkMode: boolean;
   setDarkMode: () => {};
