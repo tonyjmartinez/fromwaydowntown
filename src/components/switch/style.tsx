@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import SportsBasketballIcon from "@material-ui/icons/SportsBasketball";
 import posed from "react-pose";
@@ -33,7 +33,6 @@ const Switch = (props: Props) => {
       color: `${darkMode ? darkTheme.iconColor : lightTheme.iconColor}`
     }
   });
-  const [checked, setChecked] = useState(true);
   const classes = useStyles();
   const Basketball = props => (
     <SportsBasketballIcon className={classes.root} fontSize="large" />
@@ -43,12 +42,11 @@ const Switch = (props: Props) => {
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
-    setChecked(!checked);
   };
 
   return (
     <SwitchBg style={{ zIndex: 1 }} onClick={() => toggleDarkMode()}>
-      <Toggle style={{ zIndex: 0 }} pose={checked ? "left" : "right"}>
+      <Toggle style={{ zIndex: 0 }} pose={darkMode ? "left" : "right"}>
         <BBall />
       </Toggle>
     </SwitchBg>
