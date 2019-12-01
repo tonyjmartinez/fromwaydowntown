@@ -49,9 +49,6 @@ const TemplateWrapper = ({ children }) => {
     }
   }, [darkMode]);
 
-  console.log("darkMode", darkMode);
-  console.log(themeContext.isDark);
-
   return (
     <Wrapper>
       <Helmet>

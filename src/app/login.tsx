@@ -5,6 +5,7 @@ import {
   useIdentityContext
 } from "react-netlify-identity-widget";
 import "react-netlify-identity-widget/styles.css";
+import styled from "styled-components";
 
 interface Props {
   open: boolean;

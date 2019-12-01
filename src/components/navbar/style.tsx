@@ -17,7 +17,6 @@ const StyledTitle = styled.div`
     color: ${props => props.theme.titleColor};
     font-family: "Permanent Marker", cursive;
     font-size: 1.5em;
-    width: 100%;
   }
 `;
 
@@ -33,40 +32,61 @@ const navItemStyle = {
 };
 
 const BulmaNavBar = (props: Props) => {
-  const { title, className, darkMode, setDarkMode } = props;
+  const { title, className, darkMode, setDarkMode, setLoginOpen } = props;
   const matches = useMediaQuery("(min-width:545px)");
 
   console.log("BulmaNav", props);
   const splitTitle = title.split(" ");
   return (
-    <nav className={`navbar is-transparent ${className}`}>
+    <nav
+      className={`navbar ${className}`}
+      style={{ backgroundColor: "transparent" }}
+    >
       <div className="navbar-brand">
-        <a style={{ width: "70%" }} className="navbar-item" href="/">
-          <StyledTitle>
-            {matches
-              ? title
-              : splitTitle.map((word, idx) => {
-                  return <TitleDiv key={idx}>{word}</TitleDiv>;
-                })}
-          </StyledTitle>
-        </a>
-        <div style={{ width: "30%" }} className="navbar-item">
+        <div className="navbar-item">
+          <a href="/">
+            <StyledTitle>
+              {matches
+                ? title
+                : splitTitle.map((word, idx) => {
+                    return <TitleDiv key={idx}>{word}</TitleDiv>;
+                  })}
+            </StyledTitle>
+          </a>
+        </div>
+        <div className="navbar-item">
           <Switch darkMode={darkMode} setDarkMode={setDarkMode} />
+        </div>
+        <a
+          role="button"
+          className="navbar-burger"
+          aria-label="menu"
+          aria-expanded="false"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div className="navbar-menu">
+        <div className="navbar-end">
+          <div className="navbar-item">
+            <div className="buttons">
+              <a className="button is-primary">
+                <strong>Sign up</strong>
+              </a>
+              <a onClick={setLoginOpen} className="button is-light">
+                Log in
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
   );
 };
 
-const StyledNavBar = styled(BulmaNavBar)`
-  && {
-    background-color: ${props => props.theme.backgroundColor};
-  }
-`;
-
-export default props => {
-  return <StyledNavBar {...props} />;
-};
+export default BulmaNavBar;
 
 /*
 
