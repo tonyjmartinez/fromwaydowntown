@@ -24,8 +24,6 @@ const TemplateWrapper = ({ children }) => {
   const themeContext = useContext(ThemeManagerContext);
 
   useEffect(() => {
-    // Start off in Dark Mode
-    themeContext.toggleDark();
     console.log("Window theme", window.__theme);
     setDarkMode(window.__theme === "dark" ? true : false);
     window.__onThemeChange = () =>

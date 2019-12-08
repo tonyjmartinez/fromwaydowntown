@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import SportsBasketballIcon from "@material-ui/icons/SportsBasketball";
-import posed from "react-pose";
+import posed, { PoseGroup } from "react-pose";
 import { makeStyles } from "@material-ui/core/styles";
 import theme from "../../style/theme";
 const { darkTheme, lightTheme } = theme;
@@ -16,8 +16,12 @@ const SwitchBg = styled.div`
 `;
 
 const Toggle = posed.div({
-  left: { x: "3px" },
+  left: { x: "1px" },
   right: { x: "37px" }
+});
+const BallWrapper = posed.div({
+  enter: { opacity: 1 },
+  exit: { opacity: 0 }
 });
 
 interface Props {
@@ -26,8 +30,13 @@ interface Props {
 }
 
 const Switch = (props: Props) => {
-  console.log("Switch", props);
   const { darkMode, setDarkMode } = props;
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    setInterval(() => {
+      setVisible(!visible);
+    }, 200);
+  }, []);
   const useStyles = makeStyles({
     root: {
       color: `${darkMode ? darkTheme.iconColor : lightTheme.iconColor}`
@@ -45,9 +54,15 @@ const Switch = (props: Props) => {
   };
 
   return (
-    <SwitchBg style={{ zIndex: 1 }} onClick={() => toggleDarkMode()}>
-      <Toggle style={{ zIndex: 0 }} pose={darkMode ? "left" : "right"}>
-        <BBall />
+    <SwitchBg onClick={() => toggleDarkMode()}>
+      <Toggle pose={darkMode ? "right" : "left"}>
+        <PoseGroup>
+          {visible && (
+            <BallWrapper style={{ opacity: 0 }} key={1}>
+              <BBall style={{ opacity: 0 }} key={2} />
+            </BallWrapper>
+          )}
+        </PoseGroup>
       </Toggle>
     </SwitchBg>
   );
