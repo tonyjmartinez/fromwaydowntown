@@ -57,30 +57,6 @@ const BulmaNavBar = (props: Props) => {
         <div className="navbar-item">
           <Switch darkMode={darkMode} setDarkMode={setDarkMode} />
         </div>
-        <a
-          role="button"
-          className="navbar-burger"
-          aria-label="menu"
-          aria-expanded="false"
-        >
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
-      <div className="navbar-menu">
-        <div className="navbar-end">
-          <div className="navbar-item">
-            <div className="buttons">
-              <a className="button is-primary">
-                <strong>Sign up</strong>
-              </a>
-              <a onClick={setLoginOpen} className="button is-light">
-                Log in
-              </a>
-            </div>
-          </div>
-        </div>
       </div>
     </nav>
   );

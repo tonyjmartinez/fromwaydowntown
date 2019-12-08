@@ -14,7 +14,7 @@ export const IndexPageTemplate = ({
   mainpitch,
   description,
   intro
-}) => <div>Hello World</div>;
+}) => <div>heading</div>;
 
 IndexPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
@@ -30,6 +30,7 @@ IndexPageTemplate.propTypes = {
 
 const IndexPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark;
+  console.log("here");
 
   return (
     <Layout>

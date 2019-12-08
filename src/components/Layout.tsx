@@ -99,9 +99,7 @@ const TemplateWrapper = ({ children }) => {
         setLoginOpen={setLoginOpen}
         title="from way downtown"
       />
-      <Toggle enabled={darkMode} setEnabled={setDarkMode} />
-      <Button>Text</Button>
-      <Login open={loginOpen} setOpen={setLoginOpen} />
+
       <div>{children}</div>
     </Wrapper>
   );
