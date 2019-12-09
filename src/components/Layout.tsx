@@ -22,30 +22,33 @@ const TemplateWrapper = ({ children }) => {
   const [darkMode, setDarkMode] = useState(null);
   const [loginOpen, setLoginOpen] = useState(false);
   const themeContext = useContext(ThemeManagerContext);
+  const darkModeOn = window.__theme === "dark";
 
   useEffect(() => {
-    console.log("Window theme", window.__theme);
-    setDarkMode(window.__theme === "dark" ? true : false);
+    console.log("first useEffect");
+    // setDarkMode(window.__theme === "dark" ? true : false);
+    setDarkMode(darkModeOn);
     window.__onThemeChange = () =>
       setDarkMode(window.__theme === "dark" ? true : false);
   }, []);
 
   useEffect(() => {
-    console.log("themectx", themeContext.isDark, darkMode);
+    console.log("dark mode useEffect");
     if (darkMode !== null && themeContext.isDark !== darkMode) {
       console.log("hereeee");
       themeContext.toggleDark();
-    }
-  }, [darkMode]);
-
-  useEffect(() => {
-    console.log("useEffect", darkMode);
-
-    if (darkMode !== null) {
-      console.log("here");
       window.__setPreferredTheme(darkMode ? "dark" : "light");
     }
   }, [darkMode]);
+
+  // useEffect(() => {
+  //   console.log("useEffect", darkMode);
+
+  //   if (darkMode !== null) {
+  //     console.log("here");
+  //     window.__setPreferredTheme(darkMode ? "dark" : "light");
+  //   }
+  // }, [darkMode]);
 
   return (
     <Wrapper>
@@ -92,7 +95,7 @@ const TemplateWrapper = ({ children }) => {
         </style>
       </Helmet>
       <Navbar
-        darkMode={darkMode}
+        darkMode={darkModeOn}
         setDarkMode={setDarkMode}
         setLoginOpen={setLoginOpen}
         title="from way downtown"

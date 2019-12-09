@@ -14,9 +14,7 @@ interface StyleProps {
 const BulmaBtn = (props: Props) => {
   const { className, children } = props;
   const themeContext = useContext(ThemeManagerContext);
-  console.log(themeContext);
   const cls = `button ${themeContext.isDark ? "is-black" : "is-primary"}`;
-  console.log(cls);
   return <button className={cls}>{children}</button>;
 };
 

@@ -35,7 +35,6 @@ const BulmaNavBar = (props: Props) => {
   const { title, className, darkMode, setDarkMode, setLoginOpen } = props;
   const matches = useMediaQuery("(min-width:545px)");
 
-  console.log("BulmaNav", props);
   const splitTitle = title.split(" ");
   return (
     <nav

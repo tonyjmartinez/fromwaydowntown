@@ -17,7 +17,8 @@ const SwitchBg = styled.div`
 
 const Toggle = posed.div({
   left: { x: "1px" },
-  right: { x: "37px" }
+  right: { x: "37px" },
+  initialPose: "left"
 });
 const BallWrapper = posed.div({
   enter: { opacity: 1 },
@@ -31,12 +32,14 @@ interface Props {
 
 const Switch = (props: Props) => {
   const { darkMode, setDarkMode } = props;
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    setInterval(() => {
-      setVisible(!visible);
-    }, 200);
-  }, []);
+  // const [visible, setVisible] = useState(false);
+  // useEffect(() => {
+  //   console.log("darkmode", darkMode);
+  //   setInterval(() => {
+  //     setVisible(!visible);
+  //   }, 20);
+  // }, []);
+  console.log("Switch dark mode", darkMode);
   const useStyles = makeStyles({
     root: {
       color: `${darkMode ? darkTheme.iconColor : lightTheme.iconColor}`
@@ -52,16 +55,17 @@ const Switch = (props: Props) => {
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
+  const showDarkMode = darkMode ? "right" : "left";
 
   return (
     <SwitchBg onClick={() => toggleDarkMode()}>
-      <Toggle pose={darkMode ? "right" : "left"}>
+      <Toggle pose={darkMode ? "left" : "right"}>
         <PoseGroup>
-          {visible && (
-            <BallWrapper style={{ opacity: 0 }} key={1}>
-              <BBall style={{ opacity: 0 }} key={2} />
-            </BallWrapper>
-          )}
+          {/* {visible && ( */}
+          <BallWrapper style={{ opacity: 0 }} key={1}>
+            <BBall style={{ opacity: 0 }} key={2} />
+          </BallWrapper>
+          {/* )} */}
         </PoseGroup>
       </Toggle>
     </SwitchBg>
