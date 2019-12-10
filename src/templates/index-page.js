@@ -33,15 +33,24 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout>
-      <IndexPageTemplate
-        image={frontmatter.image}
-        title={frontmatter.title}
-        heading={frontmatter.heading}
-        subheading={frontmatter.subheading}
-        mainpitch={frontmatter.mainpitch}
-        description={frontmatter.description}
-        intro={frontmatter.intro}
-      />
+      <h1
+        className="has-text-weight-bold is-size-3"
+        style={{
+          boxShadow: "0.5rem 0 0 #f40, -0.5rem 0 0 #f40",
+          backgroundColor: "#f40",
+          color: "white",
+          padding: "0.4em"
+        }}
+      >
+        Latest Posts
+      </h1>
+      <section className="section">
+        <div className="container">
+          <div className="content">
+            <BlogRoll />
+          </div>
+        </div>
+      </section>
     </Layout>
   );
 };

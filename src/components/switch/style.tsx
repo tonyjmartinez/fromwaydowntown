@@ -62,9 +62,9 @@ const Switch = (props: Props) => {
       <Toggle pose={darkMode ? "left" : "right"}>
         <PoseGroup>
           {/* {visible && ( */}
-          <BallWrapper style={{ opacity: 0 }} key={1}>
-            <BBall style={{ opacity: 0 }} key={2} />
-          </BallWrapper>
+          {/* <BallWrapper style={{ opacity: 0 }} key={1}> */}
+          <BBall style={{ opacity: 0 }} key={2} />
+          {/* </BallWrapper> */}
           {/* )} */}
         </PoseGroup>
       </Toggle>
