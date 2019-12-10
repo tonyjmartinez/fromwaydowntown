@@ -22,12 +22,12 @@ const TemplateWrapper = ({ children }) => {
   const [darkMode, setDarkMode] = useState(null);
   const [loginOpen, setLoginOpen] = useState(false);
   const themeContext = useContext(ThemeManagerContext);
-  const darkModeOn = window.__theme === "dark";
 
   useEffect(() => {
     console.log("first useEffect");
-    // setDarkMode(window.__theme === "dark" ? true : false);
-    setDarkMode(darkModeOn);
+    setDarkMode(window.__theme === "dark" ? true : false);
+    // const darkModeOn = window.__theme === "dark";
+    // setDarkMode(darkModeOn);
     window.__onThemeChange = () =>
       setDarkMode(window.__theme === "dark" ? true : false);
   }, []);
@@ -95,7 +95,7 @@ const TemplateWrapper = ({ children }) => {
         </style>
       </Helmet>
       <Navbar
-        darkMode={darkModeOn}
+        darkMode={darkMode}
         setDarkMode={setDarkMode}
         setLoginOpen={setLoginOpen}
         title="from way downtown"

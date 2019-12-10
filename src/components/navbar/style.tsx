@@ -34,6 +34,7 @@ const navItemStyle = {
 const BulmaNavBar = (props: Props) => {
   const { title, className, darkMode, setDarkMode, setLoginOpen } = props;
   const matches = useMediaQuery("(min-width:545px)");
+  console.log("Switch in navbar", darkMode);
 
   const splitTitle = title.split(" ");
   return (
@@ -54,7 +55,9 @@ const BulmaNavBar = (props: Props) => {
           </a>
         </div>
         <div className="navbar-item">
-          <Switch darkMode={darkMode} setDarkMode={setDarkMode} />
+          {darkMode !== null && (
+            <Switch darkMode={darkMode} setDarkMode={setDarkMode} />
+          )}
         </div>
       </div>
     </nav>
