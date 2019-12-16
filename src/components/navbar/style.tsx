@@ -16,7 +16,7 @@ const StyledTitle = styled.div`
   && {
     color: ${props => props.theme.titleColor};
     font-family: "Permanent Marker", cursive;
-    font-size: 1.5em;
+    font-size: 1.4em;
   }
 `;
 

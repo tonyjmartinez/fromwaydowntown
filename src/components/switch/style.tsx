@@ -13,6 +13,7 @@ const SwitchBg = styled.div`
   border: 3px solid ${props => props.theme.mainColor};
   position: relative;
   margin: 0px auto;
+  cursor: pointer;
 `;
 
 const Toggle = posed.div({

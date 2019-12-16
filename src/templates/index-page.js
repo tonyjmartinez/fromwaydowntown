@@ -12,13 +12,13 @@ export const IndexPageTemplate = props => <h1>Hello there</h1>;
 const StyledHeader = styled.h1`
   background-color: ${props => props.theme.mainColor};
   color: ${props => props.theme.secondaryColor};
-  padding: 1em;
+  padding: 0.3em;
 `;
 
 const IndexPage = ({ data }) => {
   return (
     <Layout>
-      <StyledHeader className="has-text-weight-bold is-size-3">
+      <StyledHeader className="has-text-weight-bold is-size-4">
         Latest Posts
       </StyledHeader>
       <section className="section">
