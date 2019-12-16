@@ -14,7 +14,7 @@ import Login from "../app/login";
 const Wrapper = ({ children }) => <StyledWrapper>{children}</StyledWrapper>;
 const StyledWrapper = styled.div`
   background-color: ${props => props.theme.backgroundColor};
-  height: 100vh;
+  height: 100%;
 `;
 
 const TemplateWrapper = ({ children }) => {
