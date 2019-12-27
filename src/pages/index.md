@@ -1,4 +1,4 @@
 ---
 templateKey: index-page
-title: Great coffee with a conscience
+title: From Way Downtown
 ---

@@ -16,6 +16,7 @@ const StyledHeader = styled.h1`
 `;
 
 const IndexPage = ({ data }) => {
+  console.log("[index-page.js]", data);
   return (
     <Layout>
       <StyledHeader className="has-text-weight-bold is-size-4">

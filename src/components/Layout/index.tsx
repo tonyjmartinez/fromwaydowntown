@@ -1,15 +1,11 @@
 import React, { useEffect, useContext, useState } from "react";
 import { Helmet } from "react-helmet";
-import Footer from "./Footer";
 import styled from "styled-components";
-import Navbar from "./navbar";
-import "./all.sass";
-import useSiteMetadata from "./SiteMetadata";
+import Navbar from "../navbar";
+import "../all.sass";
+import useSiteMetadata from "../SiteMetadata";
 import { withPrefix } from "gatsby";
-import Toggle from "./Toggle";
 import { ThemeManagerContext } from "gatsby-styled-components-dark-mode";
-import Button from "./button";
-import Login from "../app/login";
 
 const Wrapper = ({ children }) => <StyledWrapper>{children}</StyledWrapper>;
 const StyledWrapper = styled.div`
@@ -26,8 +22,6 @@ const TemplateWrapper = ({ children }) => {
   useEffect(() => {
     console.log("first useEffect");
     setDarkMode(window.__theme === "dark" ? true : false);
-    // const darkModeOn = window.__theme === "dark";
-    // setDarkMode(darkModeOn);
     window.__onThemeChange = () =>
       setDarkMode(window.__theme === "dark" ? true : false);
   }, []);
@@ -40,15 +34,6 @@ const TemplateWrapper = ({ children }) => {
       window.__setPreferredTheme(darkMode ? "dark" : "light");
     }
   }, [darkMode]);
-
-  // useEffect(() => {
-  //   console.log("useEffect", darkMode);
-
-  //   if (darkMode !== null) {
-  //     console.log("here");
-  //     window.__setPreferredTheme(darkMode ? "dark" : "light");
-  //   }
-  // }, [darkMode]);
 
   return (
     <Wrapper>
