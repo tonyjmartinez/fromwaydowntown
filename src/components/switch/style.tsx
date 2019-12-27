@@ -14,6 +14,7 @@ const SwitchBg = styled.div`
   position: relative;
   margin: 0px auto;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 `;
 
 const Toggle = posed.div({
