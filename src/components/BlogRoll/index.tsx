@@ -19,17 +19,21 @@ class BlogRoll extends React.Component {
                 style={{ margin: "10px", paddingTop: "1px" }}
               >
                 <div className="card-image">
-                  <figure className="image is-4by3">
-                    <img
-                      src="https://bulma.io/images/placeholders/1280x960.png"
-                      alt="Placeholder image"
-                    />
-                  </figure>
+                  {post.frontmatter.featuredimage ? (
+                    <div className="featured-thumbnail">
+                      <PreviewCompatibleImage
+                        imageInfo={{
+                          image: post.frontmatter.featuredimage,
+                          alt: `featured image thumbnail for post ${post.title}`
+                        }}
+                      />
+                    </div>
+                  ) : null}
                 </div>
                 <div className="card-content">
                   <div className="media">
                     <div className="media-content">
-                      <p className="title is-4">John Smith</p>
+                      <p className="title is-4">{post.frontmatter.title}</p>
                       <p className="subtitle is-6">@johnsmith</p>
                     </div>
                   </div>
