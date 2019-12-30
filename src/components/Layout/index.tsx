@@ -10,7 +10,7 @@ import { ThemeManagerContext } from "gatsby-styled-components-dark-mode";
 const Wrapper = ({ children }) => <StyledWrapper>{children}</StyledWrapper>;
 const StyledWrapper = styled.div`
   background-color: ${props => props.theme.backgroundColor};
-  height: 100%;
+  height: 100vh;
 `;
 
 const TemplateWrapper = ({ children }) => {
