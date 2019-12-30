@@ -22,8 +22,11 @@ const IndexPage = ({ data }) => {
       <StyledHeader className="has-text-weight-bold is-size-4">
         Latest Posts
       </StyledHeader>
-
-      <BlogRoll />
+      <section className="section section--gradient">
+        <div className="container">
+          <BlogRoll />
+        </div>
+      </section>
     </Layout>
   );
 };
