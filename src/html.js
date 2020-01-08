@@ -50,10 +50,12 @@ export default function HTML(props) {
                 
                   link.type = 'text/css'; 
                 
-                  var newtheme = 'https://unpkg.com/bulmaswatch/cerulean/bulmaswatch.min.css';  
+                  var newtheme;
 
                   if (preferredTheme === 'dark') {
                     newtheme =  'https://unpkg.com/bulmaswatch/superhero/bulmaswatch.min.css';  
+                  } else {
+                    newtheme =  'https://unpkg.com/bulmaswatch/minty/bulmaswatch.min.css';  
                   }
 
                   link.href = newtheme;
@@ -86,6 +88,7 @@ export default function HTML(props) {
 
                 setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'));
                 setTheme(preferredTheme);
+                changeStylesheet(preferredTheme);
 
 
               })();
