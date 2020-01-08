@@ -7,12 +7,6 @@ import useSiteMetadata from "../SiteMetadata";
 import { withPrefix } from "gatsby";
 import { ThemeManagerContext } from "gatsby-styled-components-dark-mode";
 
-if (localStorage.getItem("theme") === "dark") {
-  require("../all.sass");
-} else {
-  require("../cerulean.sass");
-}
-
 const Wrapper = ({ children }) => <StyledWrapper>{children}</StyledWrapper>;
 const StyledWrapper = styled.div`
   // background-color: ${props => props.theme.backgroundColor};
@@ -26,6 +20,14 @@ const TemplateWrapper = ({ children }) => {
   const themeContext = useContext(ThemeManagerContext);
 
   useEffect(() => {
+    if (localStorage.getItem("theme") === "dark") {
+      require("../all.sass");
+    } else {
+      require("../cerulean.sass");
+    }
+  }, []);
+
+  useEffect(() => {
     setDarkMode(window.__theme === "dark" ? true : false);
     window.__onThemeChange = () =>
       setDarkMode(window.__theme === "dark" ? true : false);
@@ -37,7 +39,7 @@ const TemplateWrapper = ({ children }) => {
       console.log("hereeee");
       themeContext.toggleDark();
       window.__setPreferredTheme(darkMode ? "dark" : "light");
-      window.location.reload();
+      setDarkMode(darkMode);
     }
   }, [darkMode]);
 
