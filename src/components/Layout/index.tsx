@@ -2,14 +2,20 @@ import React, { useEffect, useContext, useState } from "react";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import Navbar from "../navbar";
-import "../all.sass";
+
 import useSiteMetadata from "../SiteMetadata";
 import { withPrefix } from "gatsby";
 import { ThemeManagerContext } from "gatsby-styled-components-dark-mode";
 
+if (localStorage.getItem("theme") === "dark") {
+  require("../all.sass");
+} else {
+  require("../cerulean.sass");
+}
+
 const Wrapper = ({ children }) => <StyledWrapper>{children}</StyledWrapper>;
 const StyledWrapper = styled.div`
-  background-color: ${props => props.theme.backgroundColor};
+  // background-color: ${props => props.theme.backgroundColor};
   min-height: 100vh;
 `;
 
@@ -20,7 +26,6 @@ const TemplateWrapper = ({ children }) => {
   const themeContext = useContext(ThemeManagerContext);
 
   useEffect(() => {
-    console.log("first useEffect");
     setDarkMode(window.__theme === "dark" ? true : false);
     window.__onThemeChange = () =>
       setDarkMode(window.__theme === "dark" ? true : false);
@@ -32,6 +37,7 @@ const TemplateWrapper = ({ children }) => {
       console.log("hereeee");
       themeContext.toggleDark();
       window.__setPreferredTheme(darkMode ? "dark" : "light");
+      window.location.reload();
     }
   }, [darkMode]);
 

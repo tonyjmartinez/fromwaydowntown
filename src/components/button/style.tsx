@@ -1,7 +1,6 @@
 import React, { ReactChildren, ReactNode, useContext } from "react";
 import styled, { ThemeConsumer } from "styled-components";
 import { ThemeManagerContext } from "gatsby-styled-components-dark-mode";
-import "../all.sass";
 
 interface Props {
   className: string;
@@ -19,8 +18,8 @@ const BulmaBtn = (props: Props) => {
 };
 
 const StyledBtn = styled(BulmaBtn)`
-  background-color: ${props => props.theme.mainColor};
-  color: ${props => props.theme.secondaryColor};
+  // background-color: ${props => props.theme.mainColor};
+  // color: ${props => props.theme.secondaryColor};
 `;
 
 export default (props: StyleProps) => {

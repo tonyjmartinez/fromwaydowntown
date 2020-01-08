@@ -14,7 +14,7 @@ interface Props {
 
 const StyledTitle = styled.div`
   && {
-    color: ${props => props.theme.titleColor};
+    // color: ${props => props.theme.titleColor};
     font-family: "Permanent Marker", cursive;
     font-size: 1.4em;
   }
