@@ -17,8 +17,19 @@ export default function HTML(props) {
         <script
           dangerouslySetInnerHTML={{
             __html: `
+
+
+          `
+          }}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
               (function() {
-                window.__onThemeChange = function() {};
+                window.__onThemeChange = function() {
+
+
+                };
                 function setTheme(newTheme) {
                   window.__theme = newTheme;
                   preferredTheme = newTheme;
@@ -26,10 +37,36 @@ export default function HTML(props) {
                   window.__onThemeChange(newTheme);
                 }
 
+                function changeStylesheet(preferredTheme) {
+
+                  // Get HTML head element 
+                  var head = document.getElementsByTagName('HEAD')[0];  
+            
+                  // Create new link Element 
+                  var link = document.createElement('link'); 
+            
+                  // set the attributes for link element  
+                  link.rel = 'stylesheet';  
+                
+                  link.type = 'text/css'; 
+                
+                  var newtheme = 'https://unpkg.com/bulmaswatch/cerulean/bulmaswatch.min.css';  
+
+                  if (preferredTheme === 'dark') {
+                    newtheme =  'https://unpkg.com/bulmaswatch/superhero/bulmaswatch.min.css';  
+                  }
+
+                  link.href = newtheme;
+            
+                  // Append link element to HTML head 
+                  head.appendChild(link);  
+                }
+
                 var preferredTheme;
                 try {
                   preferredTheme = localStorage.getItem('theme');
                   
+
                 } catch (err) { }
 
                 window.__setPreferredTheme = function(newTheme) {
@@ -37,6 +74,9 @@ export default function HTML(props) {
                   try {
                     localStorage.setItem('theme', newTheme);
                   } catch (err) {}
+
+                  changeStylesheet(newTheme);
+
                 }
 
                 var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -45,7 +85,9 @@ export default function HTML(props) {
                 });
 
                 setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'));
-                setTheme(preferredTheme)
+                setTheme(preferredTheme);
+
+
               })();
             `
           }}

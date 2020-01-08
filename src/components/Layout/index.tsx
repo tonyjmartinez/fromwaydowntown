@@ -19,13 +19,13 @@ const TemplateWrapper = ({ children }) => {
   const [loginOpen, setLoginOpen] = useState(false);
   const themeContext = useContext(ThemeManagerContext);
 
-  useEffect(() => {
-    if (localStorage.getItem("theme") === "dark") {
-      require("../all.sass");
-    } else {
-      require("../cerulean.sass");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.getItem("theme") === "dark") {
+  //     require("../all.sass");
+  //   } else {
+  //     require("../cerulean.sass");
+  //   }
+  // }, []);
 
   useEffect(() => {
     setDarkMode(window.__theme === "dark" ? true : false);
