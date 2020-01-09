@@ -37,13 +37,15 @@ export default function HTML(props) {
                   window.__onThemeChange(newTheme);
                 }
 
-                function changeStylesheet(preferredTheme) {
+                function setStylesheet(preferredTheme) {
 
                   // Get HTML head element 
                   var head = document.getElementsByTagName('HEAD')[0];  
             
                   // Create new link Element 
                   var link = document.createElement('link'); 
+
+                  link.id = 'bulma';
             
                   // set the attributes for link element  
                   link.rel = 'stylesheet';  
@@ -51,6 +53,7 @@ export default function HTML(props) {
                   link.type = 'text/css'; 
                 
                   var newtheme;
+                  console.log('preferredtheme?', preferredTheme)
 
                   if (preferredTheme === 'dark') {
                     newtheme =  'https://unpkg.com/bulmaswatch/superhero/bulmaswatch.min.css';  
@@ -62,6 +65,17 @@ export default function HTML(props) {
             
                   // Append link element to HTML head 
                   head.appendChild(link);  
+                }
+
+                function changeStyleSheet(newTheme) {
+                  var link = document.getElementById("bulma");
+                  
+                  if (newTheme === 'dark') {
+                    link.href =  'https://unpkg.com/bulmaswatch/superhero/bulmaswatch.min.css';  
+                  } else {
+                    link.href  =  'https://unpkg.com/bulmaswatch/minty/bulmaswatch.min.css';  
+                  }
+
                 }
 
                 var preferredTheme;
@@ -77,7 +91,7 @@ export default function HTML(props) {
                     localStorage.setItem('theme', newTheme);
                   } catch (err) {}
 
-                  changeStylesheet(newTheme);
+                  changeStyleSheet(newTheme);
 
                 }
 
@@ -88,7 +102,7 @@ export default function HTML(props) {
 
                 setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'));
                 setTheme(preferredTheme);
-                changeStylesheet(preferredTheme);
+                setStylesheet(preferredTheme);
 
 
               })();
