@@ -104,7 +104,13 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-plugin-offline`
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        precachePages: [
+          `https://unpkg.com/bulmaswatch/superhero/bulmaswatch.min.css`,
+          `https://unpkg.com/bulmaswatch/cerulean/bulmaswatch.min.css`
+        ]
+      }
     },
     "gatsby-plugin-netlify" // make sure to keep it last in the array,
   ]
