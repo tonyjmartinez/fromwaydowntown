@@ -11,17 +11,21 @@ export default function HTML(props) {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
+        <link
+          type="text/css"
+          rel="stylesheet"
+          id="dark"
+          href="https://unpkg.com/bulmaswatch/superhero/bulmaswatch.min.css"
+        />
+        <link
+          type="text/css"
+          rel="stylesheet"
+          id="light"
+          href="https://unpkg.com/bulmaswatch/cerulean/bulmaswatch.min.css"
+        />
         {props.headComponents}
       </head>
       <body {...props.bodyAttributes}>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-
-
-          `
-          }}
-        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -61,21 +65,11 @@ export default function HTML(props) {
                   var darkTheme = 'https://unpkg.com/bulmaswatch/cerulean/bulmaswatch.min.css';  
                   link.href = darkTheme;
                   link2.href = lightTheme;
-
-
-
-                  if (preferredTheme === 'dark') {
-                    link.disabled = false;
-                    link2.disabled = true;
-                  } else {
-                    link.disabled = true;
-                    link2.disabled = false;
-                  }
-
             
                   // Append link element to HTML head 
                   head.appendChild(link);  
                   head.appendChild(link2);
+
                 }
 
                 function changeStyleSheet(newTheme) {
@@ -112,7 +106,7 @@ export default function HTML(props) {
 
                 setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'));
                 setTheme(preferredTheme);
-                setStylesheet(preferredTheme);
+                changeStyleSheet(preferredTheme);
 
 
               })();
