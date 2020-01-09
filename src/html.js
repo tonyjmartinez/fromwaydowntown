@@ -44,36 +44,50 @@ export default function HTML(props) {
             
                   // Create new link Element 
                   var link = document.createElement('link'); 
+                  var link2 = document.createElement('link');
 
-                  link.id = 'bulma';
+                  link.id = 'dark';
+                  link2.id = 'light';
             
                   // set the attributes for link element  
                   link.rel = 'stylesheet';  
+                  link2.rel = 'stylesheet'
                 
                   link.type = 'text/css'; 
+                  link2.type = 'text/css';
                 
-                  var newtheme;
                   console.log('preferredtheme?', preferredTheme)
+                  var lightTheme = 'https://unpkg.com/bulmaswatch/superhero/bulmaswatch.min.css';  
+                  var darkTheme = 'https://unpkg.com/bulmaswatch/cerulean/bulmaswatch.min.css';  
+                  link.href = darkTheme;
+                  link2.href = lightTheme;
+
+
 
                   if (preferredTheme === 'dark') {
-                    newtheme =  'https://unpkg.com/bulmaswatch/superhero/bulmaswatch.min.css';  
+                    link.disabled = false;
+                    link2.disabled = true;
                   } else {
-                    newtheme =  'https://unpkg.com/bulmaswatch/minty/bulmaswatch.min.css';  
+                    link.disabled = true;
+                    link2.disabled = false;
                   }
 
-                  link.href = newtheme;
             
                   // Append link element to HTML head 
                   head.appendChild(link);  
+                  head.appendChild(link2);
                 }
 
                 function changeStyleSheet(newTheme) {
-                  var link = document.getElementById("bulma");
+                  var link = document.getElementById("dark");
+                  var link2 = document.getElementById('light');
                   
                   if (newTheme === 'dark') {
-                    link.href =  'https://unpkg.com/bulmaswatch/superhero/bulmaswatch.min.css';  
+                    link.disabled = false;
+                    link2.disabled = true;
                   } else {
-                    link.href  =  'https://unpkg.com/bulmaswatch/minty/bulmaswatch.min.css';  
+                    link.disabled = true;
+                    link2.disabled = false;
                   }
 
                 }
@@ -81,8 +95,6 @@ export default function HTML(props) {
                 var preferredTheme;
                 try {
                   preferredTheme = localStorage.getItem('theme');
-                  
-
                 } catch (err) { }
 
                 window.__setPreferredTheme = function(newTheme) {
@@ -90,9 +102,7 @@ export default function HTML(props) {
                   try {
                     localStorage.setItem('theme', newTheme);
                   } catch (err) {}
-
                   changeStyleSheet(newTheme);
-
                 }
 
                 var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
