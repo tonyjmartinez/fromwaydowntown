@@ -1,12 +1,12 @@
 const axios = require("axios");
 
 module.exports.handler = async function(event, context) {
-  console.log("queryStringParameters", event.queryStringParameters);
+  console.log("queryStringParameters", event.queryStringParameters.date);
+  const date = event.queryStringParameters.date;
   const res = await axios.get(
-    "http://data.nba.net/data/10s/prod/v1/20200104/scoreboard.json"
+    `http://data.nba.net/data/10s/prod/v1/${date}/scoreboard.json`
   );
-
-  console.log(res);
+  console.log("data", res.data);
 
   return {
     // return null to show no errors

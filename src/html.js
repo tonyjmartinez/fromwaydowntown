@@ -30,46 +30,12 @@ export default function HTML(props) {
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                window.__onThemeChange = function() {
-
-
-                };
+                window.__onThemeChange = function() {};
                 function setTheme(newTheme) {
                   window.__theme = newTheme;
                   preferredTheme = newTheme;
                   document.body.className = newTheme;
                   window.__onThemeChange(newTheme);
-                }
-
-                function setStylesheet(preferredTheme) {
-
-                  // Get HTML head element 
-                  var head = document.getElementsByTagName('HEAD')[0];  
-            
-                  // Create new link Element 
-                  var link = document.createElement('link'); 
-                  var link2 = document.createElement('link');
-
-                  link.id = 'dark';
-                  link2.id = 'light';
-            
-                  // set the attributes for link element  
-                  link.rel = 'stylesheet';  
-                  link2.rel = 'stylesheet'
-                
-                  link.type = 'text/css'; 
-                  link2.type = 'text/css';
-                
-                  console.log('preferredtheme?', preferredTheme)
-                  var lightTheme = 'https://unpkg.com/bulmaswatch/superhero/bulmaswatch.min.css';  
-                  var darkTheme = 'https://unpkg.com/bulmaswatch/cerulean/bulmaswatch.min.css';  
-                  link.href = darkTheme;
-                  link2.href = lightTheme;
-            
-                  // Append link element to HTML head 
-                  head.appendChild(link);  
-                  head.appendChild(link2);
-
                 }
 
                 function changeStyleSheet(newTheme) {
