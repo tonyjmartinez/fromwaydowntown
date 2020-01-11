@@ -2,8 +2,11 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { graphql } from "gatsby";
 import Layout from "../components/Layout";
+import Card from "../components/Card";
+import Table from "../components/Table";
 import Content, { HTMLContent } from "../components/Content";
 import moment from "moment";
+import styled from "styled-components";
 
 export const IndexPageTemplate = ({ title, content, contentComponent }) => {
   return <div>Index</div>;
@@ -14,6 +17,11 @@ IndexPageTemplate.propTypes = {
   content: PropTypes.string,
   contentComponent: PropTypes.func
 };
+
+const ContentWrapper = styled.div`
+  margin: 0px auto;
+  margin-top: 2em;
+`;
 
 const IndexPage = ({ data }) => {
   useEffect(() => {
@@ -27,7 +35,9 @@ const IndexPage = ({ data }) => {
   }, []);
   return (
     <Layout>
-      <h1 className="title">Title</h1>
+      <ContentWrapper style={{ width: "80%" }}>
+        <Card />
+      </ContentWrapper>
     </Layout>
   );
 };
