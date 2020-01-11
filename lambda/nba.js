@@ -6,7 +6,6 @@ module.exports.handler = async function(event, context) {
   const res = await axios.get(
     `http://data.nba.net/data/10s/prod/v1/${date}/scoreboard.json`
   );
-  console.log("data", res.data);
 
   return {
     // return null to show no errors

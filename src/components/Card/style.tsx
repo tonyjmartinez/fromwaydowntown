@@ -1,29 +1,38 @@
 import React from "react";
-import { SAS } from "react-nba-logos";
+import { SAS, MIA } from "react-nba-logos";
 import styled from "styled-components";
 
 const CardDiv = styled.div`
   width: 20%;
   display: inline-block;
+  text-align: center;
 `;
+
+const results = [
+  {
+    logo: <SAS size={30} />,
+    team: "San Antonio Spurs",
+    score: 132
+  },
+  {
+    logo: <MIA size={30} />,
+    team: "Miami Heat",
+    score: 98
+  }
+];
 
 const Card = props => (
   <div className="card">
     <div className="card-content">
-      <div className="content">
-        <CardDiv>
-          <SAS size={30} />
-        </CardDiv>
-        <CardDiv style={{ width: "60%" }}>
-          <span>San Antonio Spurs</span>
-        </CardDiv>
-        <CardDiv>
-          <span>135</span>
-        </CardDiv>
-
-        <br />
-        <time dateTime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-      </div>
+      {results.map(({ logo, team, score }) => (
+        <div className="content" style={{ height: "30px" }}>
+          <CardDiv style={{ verticalAlign: "middle" }}>{logo}</CardDiv>
+          <CardDiv style={{ width: "60%" }}>{team}</CardDiv>
+          <CardDiv>
+            <span>{score}</span>
+          </CardDiv>
+        </div>
+      ))}
     </div>
     <footer className="card-footer">
       <a href="#" className="card-footer-item">

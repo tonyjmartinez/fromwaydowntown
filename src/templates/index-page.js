@@ -33,6 +33,7 @@ const IndexPage = ({ data }) => {
         .then(console.log);
     }, 10000);
   }, []);
+
   return (
     <Layout>
       <ContentWrapper style={{ width: "80%" }}>
