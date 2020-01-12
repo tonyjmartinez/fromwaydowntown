@@ -7,6 +7,11 @@ import Table from "../components/Table";
 import Content, { HTMLContent } from "../components/Content";
 import moment from "moment";
 import styled from "styled-components";
+import axios from "axios";
+import _ from "lodash";
+
+import { SAS, MIA } from "react-nba-logos";
+import * as foo from "react-nba-logos";
 
 export const IndexPageTemplate = ({ title, content, contentComponent }) => {
   return <div>Index</div>;
@@ -25,19 +30,33 @@ const ContentWrapper = styled.div`
 
 const IndexPage = ({ data }) => {
   useEffect(() => {
-    const fmtDate = moment().format("YYYYMMDD");
-    console.log(fmtDate);
-    setInterval(() => {
-      fetch(`/.netlify/functions/nba?date=${fmtDate}`)
-        .then(response => response.json())
-        .then(console.log);
-    }, 10000);
+    console.log(foo["SAS"]);
+    const fetchGames = async () => {
+      const fmtDate = moment().format("YYYYMMDD");
+      const res = await axios.get(`/.netlify/functions/nba?date=${fmtDate}`);
+      const games = _.get(res, "data.games.games");
+      console.log(games);
+      setTimeout(fetchGames, 4000);
+    };
+    fetchGames();
   }, []);
 
+  const results = [
+    {
+      logo: <SAS size={30} />,
+      team: "San Antonio Spurs",
+      score: 132
+    },
+    {
+      logo: <MIA size={30} />,
+      team: "Miami Heat",
+      score: 98
+    }
+  ];
   return (
     <Layout>
       <ContentWrapper style={{ width: "80%" }}>
-        <Card />
+        <Card results={results} />
       </ContentWrapper>
     </Layout>
   );

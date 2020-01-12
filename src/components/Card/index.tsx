@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "./style";
 
-const CardContainer = props => <Card />;
+const CardContainer = ({ results }) => <Card results={results} />;
 
 export default CardContainer;

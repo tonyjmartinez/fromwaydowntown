@@ -1,6 +1,10 @@
-import React, { ReactChildren, ReactNode, useContext } from "react";
-import styled, { ThemeConsumer } from "styled-components";
-import { ThemeManagerContext } from "gatsby-styled-components-dark-mode";
+import React, {
+  ReactChildren,
+  ReactNode,
+  useContext
+} from "./node_modules/react";
+import styled, { ThemeConsumer } from "./node_modules/styled-components";
+import { ThemeManagerContext } from "./node_modules/gatsby-styled-components-dark-mode";
 
 interface Props {
   className: string;
