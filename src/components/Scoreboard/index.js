@@ -26,17 +26,16 @@ const Scoreboard = props => {
         const homeTeamInfo = findTeam(teams, hTeam.teamId);
         const visitingTeamInfo = findTeam(teams, vTeam.teamId);
         const HomeLogo = logos[homeTeamInfo.tricode];
-        console.log("here", HomeLogo, homeTeamInfo.triCode, homeTeamInfo);
         const VisitingLogo = logos[visitingTeamInfo.tricode];
         return {
           home: {
             score: hTeam.score,
-            name: homeTeamInfo.fullName,
+            name: `${homeTeamInfo.tricode} ${homeTeamInfo.nickname}`,
             logo: <HomeLogo size={30} />
           },
           visitor: {
             score: vTeam.score,
-            name: visitingTeamInfo.fullName,
+            name: `${visitingTeamInfo.tricode} ${visitingTeamInfo.nickname}`,
             logo: <VisitingLogo size={30} />
           }
         };
@@ -48,8 +47,11 @@ const Scoreboard = props => {
     const fetchGames = async () => {
       const fmtDate = moment().format("YYYYMMDD");
       const res = await axios.get(`/.netlify/functions/nba?date=${fmtDate}`);
+      console.log(res.data);
       const games = _.get(res, "data.games.games");
-      setScores(games);
+      console.log("games?", games);
+
+      games && setScores(games);
       console.log(games);
       setTimeout(fetchGames, 20000);
     };
