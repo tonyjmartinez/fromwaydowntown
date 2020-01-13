@@ -24,7 +24,7 @@ const Card = ({ results, scores }) => {
         scores.map(({ home, visitor }) => {
           return (
             <div
-              key={home.teamId}
+              key={home.name}
               className="card"
               style={{ marginBottom: "1em" }}
             >
