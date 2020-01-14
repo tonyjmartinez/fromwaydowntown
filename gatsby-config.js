@@ -102,7 +102,12 @@ module.exports = {
         display: `standalone`
       }
     },
-    "gatsby-plugin-offline",
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        precachePages: [`http://data.nba.net/data/10s/prod/v1/*`]
+      }
+    },
     "gatsby-plugin-netlify" // make sure to keep it last in the array,
   ]
 };
