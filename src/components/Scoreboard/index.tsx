@@ -13,9 +13,27 @@ const ContentWrapper = styled.div`
   margin: 0px auto;
   margin-top: 2em;
 `;
-
+const getNumberWithOrdinal = n => {
+  var s = ["th", "st", "nd", "rd"],
+    v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+};
 const findTeam = (teams, teamId) =>
   _.find(teams, team => team.teamId === teamId);
+
+const getGameState = game => {
+  const { isGameActivated, period, clock, startTimeEastern, statusNum } = game;
+  if (isGameActivated) {
+    if (period.isHalftime) return "Halftime";
+    return `${clock} ${period.current}`;
+  }
+  if (statusNum === 1) {
+    return startTimeEastern;
+  }
+  if (statusNum === 3) {
+    return "Final";
+  }
+};
 
 const Scoreboard = props => {
   const [teamScores, setTeamScores] = useState([]);
@@ -27,7 +45,9 @@ const Scoreboard = props => {
         const visitingTeamInfo = findTeam(teams, vTeam.teamId);
         const HomeLogo = logos[homeTeamInfo.tricode];
         const VisitingLogo = logos[visitingTeamInfo.tricode];
+        console.log("getgamestate", getGameState(game));
         return {
+          gameState: getGameState(game),
           home: {
             score: hTeam.score,
             name: `${homeTeamInfo.tricode} ${homeTeamInfo.nickname}`,
@@ -58,23 +78,11 @@ const Scoreboard = props => {
     fetchGames();
   }, []);
 
-  const results = [
-    {
-      logo: <SAS size={30} />,
-      team: "San Antonio Spurs",
-      score: 132
-    },
-    {
-      logo: <MIA size={30} />,
-      team: "Miami Heat",
-      score: 98
-    }
-  ];
   console.log("scores??", teamScores);
   return (
     <Layout>
       <ContentWrapper style={{ width: "80%" }}>
-        <Card scores={teamScores} results={results} />
+        <Card scores={teamScores} />
       </ContentWrapper>
     </Layout>
   );

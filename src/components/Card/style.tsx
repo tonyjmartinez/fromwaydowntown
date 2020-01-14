@@ -1,8 +1,5 @@
 import React from "react";
-
 import styled from "styled-components";
-import { SAS } from "react-nba-logos";
-import * as logo from "react-nba-logos";
 
 const CardDiv = styled.div`
   width: 20%;
@@ -16,12 +13,17 @@ const ContentDiv = styled.div`
   height: 35px;
 `;
 
-const Card = ({ results, scores }) => {
+const GameStateDiv = styled.div`
+  text-align: center;
+  width: 100%;
+`;
+
+const Card = ({ scores }) => {
   console.log("card scores", scores);
   return (
     <div>
       {scores &&
-        scores.map(({ home, visitor }) => {
+        scores.map(({ home, visitor, gameState }) => {
           return (
             <div
               key={home.name}
@@ -47,9 +49,12 @@ const Card = ({ results, scores }) => {
                   <CardDiv width="20%">
                     <span>{visitor.score}</span>
                   </CardDiv>
+                  <br />
                 </ContentDiv>
+                <GameStateDiv>{gameState}</GameStateDiv>
               </div>
-              <footer className="card-footer">
+
+              {/* <footer className="card-footer">
                 <a href="#" className="card-footer-item">
                   Save
                 </a>
@@ -59,7 +64,7 @@ const Card = ({ results, scores }) => {
                 <a href="#" className="card-footer-item">
                   Delete
                 </a>
-              </footer>
+              </footer> */}
             </div>
           );
         })}
