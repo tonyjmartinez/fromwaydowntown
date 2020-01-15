@@ -25,7 +25,7 @@ const getGameState = game => {
   const { isGameActivated, period, clock, startTimeEastern, statusNum } = game;
   if (isGameActivated) {
     if (period.isHalftime) return "Halftime";
-    return `${clock} ${period.current}`;
+    return `${clock} ${getNumberWithOrdinal(period.current)}`;
   }
   if (statusNum === 1) {
     return startTimeEastern;
