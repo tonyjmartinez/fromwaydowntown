@@ -21,8 +21,6 @@ const getNumberWithOrdinal = n => {
 };
 const findTeam = (teams, teamId) =>
   _.find(teams, team => team.teamId === teamId);
-const large = useMediaQuery("(min-width:900pix)");
-const medium = useMediaQuery("(min-width:");
 
 const getGameState = game => {
   const { isGameActivated, period, clock, startTimeEastern, statusNum } = game;
@@ -45,55 +43,65 @@ const getGameState = game => {
 };
 
 const Scoreboard = props => {
-  const [teamScores, setTeamScores] = useState([]);
+  const xl = useMediaQuery("(min-width:1000px)");
+  const large = useMediaQuery("(min-width:900px)");
+  const medium = useMediaQuery("(min-width:420px");
   let width = "80%";
-  if (large)
-    useEffect(() => {
-      const setScores = games => {
-        const scores = games.map(game => {
-          const { hTeam, vTeam, startTimeEastern } = game;
-          const homeTeamInfo = findTeam(teams, hTeam.teamId);
-          const visitingTeamInfo = findTeam(teams, vTeam.teamId);
-          const HomeLogo = logos[homeTeamInfo.tricode];
-          const VisitingLogo = logos[visitingTeamInfo.tricode];
-          console.log("getgamestate", getGameState(game));
-          return {
-            gameState: getGameState(game),
-            home: {
-              score: hTeam.score,
-              name: `${homeTeamInfo.tricode} ${homeTeamInfo.nickname}`,
-              logo: <HomeLogo size={30} />
-            },
-            visitor: {
-              score: vTeam.score,
-              name: `${visitingTeamInfo.tricode} ${visitingTeamInfo.nickname}`,
-              logo: <VisitingLogo size={30} />
-            }
-          };
-        });
-        console.log(scores);
-        setTeamScores(scores);
-      };
+  if (xl) {
+    width = "25%";
+  } else if (large) {
+    width = "35%";
+  } else if (medium) {
+    width = "50%";
+  }
+  const cardStyle = { width, margin: "0px auto" };
+  const [teamScores, setTeamScores] = useState([]);
+  useEffect(() => {
+    const setScores = games => {
+      const scores = games.map(game => {
+        const { hTeam, vTeam, startTimeEastern } = game;
+        const homeTeamInfo = findTeam(teams, hTeam.teamId);
+        const visitingTeamInfo = findTeam(teams, vTeam.teamId);
+        const HomeLogo = logos[homeTeamInfo.tricode];
+        const VisitingLogo = logos[visitingTeamInfo.tricode];
+        console.log("getgamestate", getGameState(game));
+        return {
+          gameState: getGameState(game),
+          home: {
+            score: hTeam.score,
+            name: `${homeTeamInfo.tricode} ${homeTeamInfo.nickname}`,
+            logo: <HomeLogo size={30} />
+          },
+          visitor: {
+            score: vTeam.score,
+            name: `${visitingTeamInfo.tricode} ${visitingTeamInfo.nickname}`,
+            logo: <VisitingLogo size={30} />
+          }
+        };
+      });
+      console.log(scores);
+      setTeamScores(scores);
+    };
 
-      const fetchGames = async () => {
-        const fmtDate = moment().format("YYYYMMDD");
-        const res = await axios.get(`/.netlify/functions/nba?date=${fmtDate}`);
-        console.log(res.data);
-        const games = _.get(res, "data.games.games");
-        console.log("games?", games);
+    const fetchGames = async () => {
+      const fmtDate = moment().format("YYYYMMDD");
+      const res = await axios.get(`/.netlify/functions/nba?date=${fmtDate}`);
+      console.log(res.data);
+      const games = _.get(res, "data.games.games");
+      console.log("games?", games);
 
-        games && setScores(games);
-        console.log(games);
-        setTimeout(fetchGames, 20000);
-      };
-      fetchGames();
-    }, []);
+      games && setScores(games);
+      console.log(games);
+      setTimeout(fetchGames, 20000);
+    };
+    fetchGames();
+  }, []);
 
   console.log("scores??", teamScores);
   return (
     <Layout>
-      <ContentWrapper style={{ width: "80%" }}>
-        <Card cardStyle={{}} scores={teamScores} />
+      <ContentWrapper style={{ width: "100%" }}>
+        <Card cardStyle={cardStyle} scores={teamScores} />
       </ContentWrapper>
     </Layout>
   );

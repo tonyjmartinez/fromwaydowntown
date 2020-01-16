@@ -18,10 +18,10 @@ const GameStateDiv = styled.div`
   width: 100%;
 `;
 
-const Card = ({ scores }) => {
+const Card = ({ scores, cardStyle }) => {
   console.log("card scores", scores);
   return (
-    <div>
+    <div style={cardStyle}>
       {scores &&
         scores.map(({ home, visitor, gameState }) => {
           return (

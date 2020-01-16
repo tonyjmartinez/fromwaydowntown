@@ -15,13 +15,13 @@ export default function HTML(props) {
           type="text/css"
           rel="stylesheet"
           id="dark"
-          href="https://unpkg.com/bulmaswatch/superhero/bulmaswatch.min.css"
+          href="https://unpkg.com/bulmaswatch/slate/bulmaswatch.min.css"
         />
         <link
           type="text/css"
           rel="stylesheet"
           id="light"
-          href="https://unpkg.com/bulmaswatch/cerulean/bulmaswatch.min.css"
+          href="https://unpkg.com/bulmaswatch/materia/bulmaswatch.min.css"
         />
         {props.headComponents}
       </head>
