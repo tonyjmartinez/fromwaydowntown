@@ -11,6 +11,7 @@ const CardDiv = styled.div`
 
 const ContentDiv = styled.div`
   height: 35px;
+  margin-bottom: 1em;
 `;
 
 const GameStateDiv = styled.div`
@@ -32,21 +33,21 @@ const Card = ({ scores, cardStyle }) => {
             >
               <div className="card-content">
                 <ContentDiv key={home.name}>
-                  <CardDiv middle width="20%">
+                  <CardDiv middle width="10%">
                     {home.logo}
                   </CardDiv>
-                  <CardDiv width="60%">{home.name}</CardDiv>
-                  <CardDiv width="20%">
+                  <CardDiv width="80%">{home.name}</CardDiv>
+                  <CardDiv width="10%">
                     <span>{home.score}</span>
                   </CardDiv>
                 </ContentDiv>
 
                 <ContentDiv key={visitor.name}>
-                  <CardDiv middle width="20%">
+                  <CardDiv middle width="10%">
                     {visitor.logo}
                   </CardDiv>
-                  <CardDiv width="60%">{visitor.name}</CardDiv>
-                  <CardDiv width="20%">
+                  <CardDiv width="80%">{visitor.name}</CardDiv>
+                  <CardDiv width="10%">
                     <span>{visitor.score}</span>
                   </CardDiv>
                   <br />

@@ -43,11 +43,14 @@ const getGameState = game => {
 };
 
 const Scoreboard = props => {
+  const xxl = useMediaQuery("(min-width:1500px)");
   const xl = useMediaQuery("(min-width:1000px)");
   const large = useMediaQuery("(min-width:900px)");
   const medium = useMediaQuery("(min-width:420px");
   let width = "80%";
-  if (xl) {
+  if (xxl) {
+    width = "17%";
+  } else if (xl) {
     width = "25%";
   } else if (large) {
     width = "35%";
@@ -70,12 +73,12 @@ const Scoreboard = props => {
           home: {
             score: hTeam.score,
             name: `${homeTeamInfo.tricode} ${homeTeamInfo.nickname}`,
-            logo: <HomeLogo size={30} />
+            logo: <HomeLogo size={35} />
           },
           visitor: {
             score: vTeam.score,
             name: `${visitingTeamInfo.tricode} ${visitingTeamInfo.nickname}`,
-            logo: <VisitingLogo size={30} />
+            logo: <VisitingLogo size={35} />
           }
         };
       });
