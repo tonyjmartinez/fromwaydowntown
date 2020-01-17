@@ -57,17 +57,19 @@ const Scoreboard = props => {
   } else if (medium) {
     width = "50%";
   }
+
   const cardStyle = { width, margin: "0px auto" };
   const [teamScores, setTeamScores] = useState([]);
   useEffect(() => {
     const setScores = games => {
       const scores = games.map(game => {
-        const { hTeam, vTeam, startTimeEastern } = game;
+        const { hTeam, vTeam, isGameActivated } = game;
         const homeTeamInfo = findTeam(teams, hTeam.teamId);
         const visitingTeamInfo = findTeam(teams, vTeam.teamId);
         const HomeLogo = logos[homeTeamInfo.tricode];
         const VisitingLogo = logos[visitingTeamInfo.tricode];
         console.log("getgamestate", getGameState(game));
+        const active = isGameActivated;
         return {
           gameState: getGameState(game),
           home: {
@@ -79,7 +81,8 @@ const Scoreboard = props => {
             score: vTeam.score,
             name: `${visitingTeamInfo.tricode} ${visitingTeamInfo.nickname}`,
             logo: <VisitingLogo size={35} />
-          }
+          },
+          active
         };
       });
       console.log(scores);

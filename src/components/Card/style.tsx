@@ -24,7 +24,7 @@ const Card = ({ scores, cardStyle }) => {
   return (
     <div style={cardStyle}>
       {scores &&
-        scores.map(({ home, visitor, gameState }) => {
+        scores.map(({ home, visitor, gameState, active }) => {
           return (
             <div
               key={home.name}
@@ -52,7 +52,15 @@ const Card = ({ scores, cardStyle }) => {
                   </CardDiv>
                   <br />
                 </ContentDiv>
-                <GameStateDiv>{gameState}</GameStateDiv>
+                <GameStateDiv>
+                  <span
+                    className={`tag ${
+                      active ? "is-success" : "is-danger"
+                    } is-light`}
+                  >
+                    {gameState}
+                  </span>
+                </GameStateDiv>
               </div>
 
               {/* <footer className="card-footer">
