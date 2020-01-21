@@ -32,16 +32,6 @@ const Card = ({ scores, cardStyle }) => {
               style={{ marginBottom: "1em" }}
             >
               <div className="card-content">
-                <ContentDiv key={home.name}>
-                  <CardDiv middle width="10%">
-                    {home.logo}
-                  </CardDiv>
-                  <CardDiv width="80%">{home.name}</CardDiv>
-                  <CardDiv width="10%">
-                    <span>{home.score}</span>
-                  </CardDiv>
-                </ContentDiv>
-
                 <ContentDiv key={visitor.name}>
                   <CardDiv middle width="10%">
                     {visitor.logo}
@@ -51,6 +41,15 @@ const Card = ({ scores, cardStyle }) => {
                     <span>{visitor.score}</span>
                   </CardDiv>
                   <br />
+                </ContentDiv>
+                <ContentDiv key={home.name}>
+                  <CardDiv middle width="10%">
+                    {home.logo}
+                  </CardDiv>
+                  <CardDiv width="80%">{home.name}</CardDiv>
+                  <CardDiv width="10%">
+                    <span>{home.score}</span>
+                  </CardDiv>
                 </ContentDiv>
                 <GameStateDiv>
                   <span
