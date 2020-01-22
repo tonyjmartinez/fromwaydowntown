@@ -105,7 +105,6 @@ module.exports = {
     {
       resolve: `gatsby-plugin-offline`,
       options: {
-        precachePages: [`/.netlify/functions/*`],
         workboxConfig: {
           importWorkboxFrom: `cdn`,
           runtimeCaching: [
@@ -123,7 +122,7 @@ module.exports = {
             {
               // page-data.json files are not content hashed
               urlPattern: /\.netlify\/functions.*/,
-              handler: `cacheFirst`
+              handler: `staleWhileRevalidate`
             },
             {
               // Add runtime caching of various other page resources
