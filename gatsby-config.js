@@ -123,7 +123,7 @@ module.exports = {
             {
               // page-data.json files are not content hashed
               urlPattern: /\.netlify\/functions.*/,
-              handler: `networkFirst`
+              handler: `cacheFirst`
             },
             {
               // Add runtime caching of various other page resources
